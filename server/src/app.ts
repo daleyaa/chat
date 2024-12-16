@@ -20,10 +20,10 @@ const port = process.env.PORT_APP
 const server = createServer(app)
 
 if (
-  !process.env.DATABASE ||
-  !process.env.USER ||
-  !process.env.PASSWORD ||
-  !process.env.HOST
+  !process.env.DB_DATABASE ||
+  !process.env.DB_USER ||
+  !process.env.DB_PASSWORD ||
+  !process.env.DB_HOST
 ) {
   console.error('Database config is not valid!')
   process.exit(1)
@@ -62,7 +62,6 @@ const options = {
 
 //TODO
 app.get('/', (req, res) => {
-  socketHandler(server)
   res.sendFile(join(__dirname, 'util/index.html'))
 })
 
@@ -86,7 +85,7 @@ AppDataSource.initialize()
     app.use('/users', userRoutes)
     app.use('/messages', messageRoutes)
     app.use('/chats', chatRoutes)
-
+    socketHandler()
     server.listen(port, () => {
       console.log(`server running at http://localhost:${port}`)
     })
