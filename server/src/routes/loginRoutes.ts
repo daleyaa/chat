@@ -1,5 +1,5 @@
-import express, { Request, Response } from 'express'
-import { loginController } from '../controllers/userControllers'
+import express, { Request, Response } from 'express';
+import { loginController } from '../controllers/userControllers';
 /**
  * @swagger
  * components:
@@ -109,9 +109,9 @@ import { loginController } from '../controllers/userControllers'
  *                message: "Internal Server Error"
  */
 
-const router = express.Router()
+const router = express.Router();
 router.post('/', async function (req: Request, res: Response) {
-  return await loginController(req, res)
-})
+  return await loginController(req, res);
+});
 
-export default router
+export default router;

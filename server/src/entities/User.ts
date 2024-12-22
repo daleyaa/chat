@@ -6,46 +6,46 @@ import {
   UpdateDateColumn,
   OneToMany,
   ManyToMany,
-} from 'typeorm'
-import { Message } from './Message'
-import { Chat } from './Chat'
+} from 'typeorm';
+import { Message } from './Message';
+import { Chat } from './Chat';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id!: number
+  id!: number;
 
   @Column()
-  firstName!: string
+  firstName!: string;
 
   @Column()
-  lastName!: string
+  lastName!: string;
 
   @Column()
-  username!: string
+  username!: string;
 
   @Column({ select: false })
-  password!: string
+  password!: string;
 
   @Column({ nullable: true })
-  age!: number
+  age!: number;
 
   @CreateDateColumn()
-  createAt!: Date
+  createAt!: Date;
 
   @UpdateDateColumn()
-  updateAt!: Date
+  updateAt!: Date;
 
   @OneToMany(() => Message, message => message.sender)
-  messages?: Message[]
+  messages?: Message[];
 
   @ManyToMany(() => Chat, chat => chat.subscriptions, {
     onDelete: 'SET NULL',
     onUpdate: 'CASCADE',
     nullable: true,
   })
-  chats?: Chat[]
+  chats?: Chat[];
 
   @OneToMany(() => Chat, chat => chat.createBy)
-  ownerChats?: Chat[]
+  ownerChats?: Chat[];
 }

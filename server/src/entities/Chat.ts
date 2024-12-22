@@ -8,30 +8,30 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from 'typeorm'
-import { User } from './User'
-import { Message } from './Message'
+} from 'typeorm';
+import { User } from './User';
+import { Message } from './Message';
 
 @Entity()
 export class Chat {
   @PrimaryGeneratedColumn()
-  id!: number
+  id!: number;
 
   @Column({ nullable: true })
-  username!: string
+  username!: string;
 
   @Column({
     type: 'enum',
     enum: ['group', 'pv', 'bot'],
     default: 'pv',
   })
-  type?: string
+  type?: string;
 
   @CreateDateColumn()
-  createAt!: Date
+  createAt!: Date;
 
   @UpdateDateColumn()
-  updateAt!: Date
+  updateAt!: Date;
 
   @ManyToMany(() => User, user => user.chats, {
     onDelete: 'SET NULL',
@@ -41,10 +41,10 @@ export class Chat {
     cascade: true,
   })
   @JoinTable()
-  subscriptions!: User[]
+  subscriptions!: User[];
 
   @OneToMany(() => Message, message => message.chat)
-  messages?: Message[]
+  messages?: Message[];
 
   @ManyToOne(() => User, user => user.ownerChats, {
     onDelete: 'SET NULL',
@@ -52,5 +52,5 @@ export class Chat {
     nullable: true,
     eager: true,
   })
-  createBy!: User
+  createBy!: User;
 }

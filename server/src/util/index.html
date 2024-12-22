@@ -64,41 +64,41 @@
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io()
+      const socket = io();
 
-      const form = document.getElementById('form')
-      const input = document.getElementById('input')
-      const messages = document.getElementById('messages')
-      const toggleButton = document.getElementById('toggle-btn')
+      const form = document.getElementById('form');
+      const input = document.getElementById('input');
+      const messages = document.getElementById('messages');
+      const toggleButton = document.getElementById('toggle-btn');
 
       form.addEventListener('submit', e => {
-        e.preventDefault()
+        e.preventDefault();
         if (input.value) {
           socket.emit('chat message', {
             msg: input.value,
             senderId: 1,
             chatId: 4,
-          })
-          input.value = ''
+          });
+          input.value = '';
         }
-      })
+      });
 
       socket.on('chat message', msg => {
-        const item = document.createElement('li')
-        item.textContent = msg
-        messages.appendChild(item)
-        window.scrollTo(0, document.body.scrollHeight)
-      })
+        const item = document.createElement('li');
+        item.textContent = msg;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
       toggleButton.addEventListener('click', e => {
-        e.preventDefault()
+        e.preventDefault();
         if (socket.connected) {
-          toggleButton.innerText = 'Connect'
-          socket.disconnect()
+          toggleButton.innerText = 'Connect';
+          socket.disconnect();
         } else {
-          toggleButton.innerText = 'Disconnect'
-          socket.connect()
+          toggleButton.innerText = 'Disconnect';
+          socket.connect();
         }
-      })
+      });
     </script>
   </body>
 </html>

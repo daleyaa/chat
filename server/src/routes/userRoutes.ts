@@ -1,13 +1,13 @@
-import { Router, Request, Response } from 'express'
+import { Router, Request, Response } from 'express';
 import {
   changeDataController,
   deleteUserController,
   findUserController,
   getAllUsersController,
-} from '../controllers/userControllers'
-import { getAllChatsUserController } from '../controllers/userControllers'
-import authMiddleware from '../middleware/authMiddleware'
-import checkUserAccessMiddleware from '../middleware/checkUserAccessMiddleware'
+} from '../controllers/userControllers';
+import { getAllChatsUserController } from '../controllers/userControllers';
+import authMiddleware from '../middleware/authMiddleware';
+import checkUserAccessMiddleware from '../middleware/checkUserAccessMiddleware';
 
 /**
  * @swagger
@@ -253,39 +253,39 @@ import checkUserAccessMiddleware from '../middleware/checkUserAccessMiddleware'
  *      500:
  *        $ref: '#/components/responses/500'
  */
-const router = Router()
+const router = Router();
 router.get(
   '/:id',
   [authMiddleware, checkUserAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await findUserController(req, res)
+    return await findUserController(req, res);
   },
-)
+);
 
 router.get('/', authMiddleware, async function (req: Request, res: Response) {
-  return await getAllUsersController(req, res)
-})
+  return await getAllUsersController(req, res);
+});
 
 router.get(
   '/:id/chats',
   [authMiddleware, checkUserAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await getAllChatsUserController(req, res)
+    return await getAllChatsUserController(req, res);
   },
-)
+);
 router.delete(
   '/:id',
   [authMiddleware, checkUserAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await deleteUserController(req, res)
+    return await deleteUserController(req, res);
   },
-)
+);
 
 router.put(
   '/:id',
   [authMiddleware, checkUserAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await changeDataController(req, res)
+    return await changeDataController(req, res);
   },
-)
-export default router
+);
+export default router;

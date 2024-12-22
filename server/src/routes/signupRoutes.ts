@@ -1,5 +1,5 @@
-import { Router, Request, Response } from 'express'
-import { signupController } from '../controllers/userControllers'
+import { Router, Request, Response } from 'express';
+import { signupController } from '../controllers/userControllers';
 
 /**
  * @swagger
@@ -112,9 +112,9 @@ import { signupController } from '../controllers/userControllers'
  *              example:
  *                message: "Internal Server Error"
  */
-const router = Router()
+const router = Router();
 router.post('/', async function (req: Request, res: Response) {
-  return await signupController(req, res)
-})
+  return await signupController(req, res);
+});
 
-export default router
+export default router;

@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express'
+import { Router, Request, Response } from 'express';
 import {
   changeChatController,
   createChatController,
@@ -6,9 +6,9 @@ import {
   getChatByIdController,
   subscribeUserToChatController,
   unsubscribeUserToChatController,
-} from '../controllers/chatController'
-import authMiddleware from '../middleware/authMiddleware'
-import checkChatAccessMiddleware from '../middleware/checkChatAccessMiddleware'
+} from '../controllers/chatController';
+import authMiddleware from '../middleware/authMiddleware';
+import checkChatAccessMiddleware from '../middleware/checkChatAccessMiddleware';
 
 /**
  * @swagger
@@ -291,47 +291,47 @@ import checkChatAccessMiddleware from '../middleware/checkChatAccessMiddleware'
  *      500:
  *        $ref: '#/components/responses/500'
  */
-const router = Router()
+const router = Router();
 router.post(
   '/',
   [authMiddleware, checkChatAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await createChatController(req, res)
+    return await createChatController(req, res);
   },
-)
+);
 router.put(
   '/:id',
   [authMiddleware, checkChatAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await changeChatController(req, res)
+    return await changeChatController(req, res);
   },
-)
+);
 router.delete(
   '/:id',
   [authMiddleware, checkChatAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await deleteChatController(req, res)
+    return await deleteChatController(req, res);
   },
-)
+);
 router.get(
   '/:id',
   [authMiddleware, checkChatAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await getChatByIdController(req, res)
+    return await getChatByIdController(req, res);
   },
-)
+);
 router.post(
   '/subscribe',
   [authMiddleware, checkChatAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await subscribeUserToChatController(req, res)
+    return await subscribeUserToChatController(req, res);
   },
-)
+);
 router.post(
   '/unsubscribe',
   [authMiddleware, checkChatAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await unsubscribeUserToChatController(req, res)
+    return await unsubscribeUserToChatController(req, res);
   },
-)
-export default router
+);
+export default router;

@@ -1,11 +1,11 @@
-import { Router, Request, Response } from 'express'
+import { Router, Request, Response } from 'express';
 import {
   changeMessageController,
   deleteMessageController,
   getMessagesController,
-} from '../controllers/messageControllers'
-import authMiddleware from '../middleware/authMiddleware'
-import checkMessageAccessMiddleware from '../middleware/checkMessageAccessMiddleware'
+} from '../controllers/messageControllers';
+import authMiddleware from '../middleware/authMiddleware';
+import checkMessageAccessMiddleware from '../middleware/checkMessageAccessMiddleware';
 
 /**
  * @swagger
@@ -182,28 +182,28 @@ import checkMessageAccessMiddleware from '../middleware/checkMessageAccessMiddle
  *      500:
  *        $ref: '#/components/responses/500'
  */
-const router = Router()
+const router = Router();
 
 router.delete(
   '/:id',
   [authMiddleware, checkMessageAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await deleteMessageController(req, res)
+    return await deleteMessageController(req, res);
   },
-)
+);
 
 router.put(
   '/:chatId',
   [authMiddleware, checkMessageAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await changeMessageController(req, res)
+    return await changeMessageController(req, res);
   },
-)
+);
 router.get(
   '/chats/:id',
   [authMiddleware, checkMessageAccessMiddleware],
   async function (req: Request, res: Response) {
-    return await getMessagesController(req, res)
+    return await getMessagesController(req, res);
   },
-)
-export default router
+);
+export default router;

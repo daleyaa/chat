@@ -5,23 +5,23 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from 'typeorm'
-import { User } from './User'
-import { Chat } from './Chat'
+} from 'typeorm';
+import { User } from './User';
+import { Chat } from './Chat';
 
 @Entity()
 export class Message {
   @PrimaryGeneratedColumn()
-  id!: number
+  id!: number;
 
   @Column('text')
-  context!: string
+  context!: string;
 
   @CreateDateColumn()
-  createAt!: Date
+  createAt!: Date;
 
   @UpdateDateColumn()
-  updateAt!: Date
+  updateAt!: Date;
 
   @ManyToOne(() => User, user => user.messages, {
     onDelete: 'SET NULL',
@@ -29,11 +29,11 @@ export class Message {
     nullable: true,
     eager: true,
   })
-  sender?: User
+  sender?: User;
 
   @ManyToOne(() => Chat, chat => chat.messages, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  chat?: Chat
+  chat?: Chat;
 }
