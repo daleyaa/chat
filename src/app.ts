@@ -12,7 +12,6 @@ import messageRoutes from './routes/messageRoutes';
 import chatRoutes from './routes/chatRoutes';
 import { createServer } from 'http';
 import socketHandler from './util/socketHandler';
-import { join } from 'node:path';
 
 dotenv.config();
 const app = express();
@@ -60,9 +59,8 @@ const options = {
   apis: ['./src/routes/*.ts'],
 };
 
-//TODO
 app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, 'util/index.html'));
+  res.send('Hi, welcome to the chat app :)');
 });
 
 const specs = swaggerJsdoc(options);
